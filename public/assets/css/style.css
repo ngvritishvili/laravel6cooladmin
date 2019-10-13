@@ -1,0 +1,15 @@
+
+@import url("index.css"); 
+@import url("catalog.css"); 
+@import url("about.css"); 
+@import url("contact.css"); 
+@import url("responsive.css"); 
+*, ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+a {
+	color: #000;
+	text-decoration: none;
+}

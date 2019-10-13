@@ -1,0 +1,125 @@
+/* catalog main */
+.catalog_main {
+    height: calc(50vh - 90px);
+    position: relative;
+    background: #f2f2f2;
+    overflow: hidden;
+}
+
+.catalog_categories {
+    background: #f2f2f2;
+
+}
+
+.category_titles {
+    font-size: 22px;
+    font-weight: bold;
+    padding-top: 12px;
+}
+.catalog_main img {
+    float: right;
+    position: relative;
+}
+
+.catalog_title {
+    position: absolute;
+    left: 46%;
+    margin: 20px auto;
+    display: block;
+    z-index: 2;
+    color: #666;
+    text-transform: uppercase;
+}
+/* catalog main end */
+/* filter categories */
+
+/* aside */
+aside {
+    display: grid;
+    grid-gap: 20px;
+}
+.main_category {
+    display: flex;
+    flex-direction: column;
+}
+.category_title {
+    color: #333;
+    font-size: 75px;
+    text-transform: uppercase;
+    background-color: #ebebeb;
+    margin-bottom: 5px;
+}
+.category_list {
+    font-size: 40px;
+    background-color: #ebebeb;
+    border-bottom-style: dotted;
+}
+.sub_category_content {
+    display: none
+}
+.show_sub_category .sub_category_content {
+    display: block;
+}
+/* aside end */
+/* catalog */
+.categories_wrapper {
+    position: relative;
+}
+.catalog {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+.catalog_item {
+    display: none
+}
+.show {
+    display: block;
+}
+/* catalog end */
+
+/* filter categories end */
+/* category popup */
+.category_popup{
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: #ebebeb;
+}
+.close {
+    width: 30px;
+    float: right;
+    font-size: 30px;
+    text-align: center;
+    background-color: #d7d7d7;
+}
+.show_category {
+    display: block;
+}
+.popup_info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    margin-top: 20px;
+}
+.popup_title {
+    color: #333;
+    font-size: 36px;
+}
+.category_popup p {
+    font-size: 24px;
+}
+.about_content {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #707070;
+}
+.share {
+    text-transform: uppercase;
+}
+.add_info h2 {
+    font-size: 30px;
+    padding: 20px 0;
+}
+
+/* popup slider */
