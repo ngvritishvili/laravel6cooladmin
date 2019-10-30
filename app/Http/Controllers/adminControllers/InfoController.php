@@ -52,12 +52,38 @@ class InfoController extends Controller
 
         if ($info == null) {
 
+            $date = Carbon::now()->format('Y-m-d-h-m-s');
+            $pluss = random_int(1, 255);
+
+            if ($request->hasFile('logo'))
+            {
+                $logoName = $date . '.' . $pluss . $request->logo->getClientOriginalExtension();
+                $request->logo->move(public_path('/images/info'), $logoName);
+
+
+            }
+
+            if ($request->hasFile('banner'))
+            {
+                $bannerName = $date . '.' . $pluss . $request->banner->getClientOriginalExtension();
+                $request->banner->move(public_path('/images/info'), $bannerName);
+
+            }
+            if ($request->hasFile('favicon'))
+            {
+                $faviconName = $date . '.' . $pluss . $request->favicon->getClientOriginalExtension();
+                $request->favicon->move(public_path('/images/info'), $faviconName);
+
+            }
+
+
             $data = [
                 'title' => request('title'),
-                'description' => request('description'),
+                'description' => request('site_description'),
                 'meta_words' => request('meta_words'),
-                'logo' => request('logo'),
-                'banner' => request('banner'),
+                'logo' => $logoName ?? '',
+                'banner' => $bannerName ?? '',
+                'favicon' => $faviconName ?? '',
                 'phone' => request('phone'),
                 'email' => request('email'),
                 'fb' => request('fb'),
@@ -66,6 +92,7 @@ class InfoController extends Controller
 
             Info::create($data);
 
+            return redirect('admin');
 
         } else {
 
@@ -76,8 +103,11 @@ class InfoController extends Controller
             $info = Info::first();
 
             $info->title = request('title');
-            $info->description = request('description');
+            $info->description = request('site_description');
             $info->meta_words = request('meta_words');
+            $info->phone = request('phone');
+            $info->email = request('email');
+            $info->fb = request('fb');
 
 
             if ($request->hasFile('logo'))

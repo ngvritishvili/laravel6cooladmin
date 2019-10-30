@@ -31,7 +31,7 @@
                         <label
                             class="form-control-label mt-4">{{ ($attribute != null) ? $attribute->translate($locale)->description : 'Description' }}</label>
                         <textarea class="md-textarea form-control" rows="4" cols="7"
-                                  name="description"
+                                  name="site_description"
                                   placeholder="English"
                         >{{ ($infoWithImages != null) ? $infoWithImages->description : '' }}</textarea>
                     </div>

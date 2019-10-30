@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/assets/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="/assets/img/favicon.ico">
+    <script src="https://cdn.ckeditor.com/4.13.0/full/ckeditor.js"></script>
 
 </head>
 <body>

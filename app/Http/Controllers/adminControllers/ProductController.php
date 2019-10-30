@@ -23,9 +23,12 @@ class ProductController extends Controller
      */
     public function index($locale)
     {
+
         $attributes = Attribute::first();
         $products = Product::all();
         App::setLocale($locale);
+
+
 
         return view('admin.product.index', compact('locale', 'products','attributes'));
     }
@@ -37,10 +40,14 @@ class ProductController extends Controller
      */
     public function create($locale)
     {
+
         $attributes = Attribute::first();
         App::setLocale($locale);
 
         $subCategories = SubCategory::all();
+
+        
+
 
         return view('admin.product.create', compact('locale', 'subCategories','attributes'));
     }
@@ -53,29 +60,49 @@ class ProductController extends Controller
      */
     public function store(Request $request, $locale)
     {
+
         $this->validate($request, [
             'productnameen' => 'required|max:255',
             'productnameka' => 'required|max:255',
-            'productdescriptionen' => 'required|max:255',
-            'productdescriptionka' => 'required|max:255',
+            'productdescriptionen' => 'required',
+            'productdescriptionka' => 'required',
+            'productstyleen' => 'required',
+            'productstyleka' => 'required',
+            'productmaterialen' => 'required',
+            'productmaterialka' => 'required',
+
             'images.*' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048'
 
         ]);
-
+//        dd(request()->all());
 
         $id = request('id');
         $productNameEn = request('productnameen');
         $productNameKa = request('productnameka');
         $productDescriptionEn = request('productdescriptionen');
         $productDescriptionKa = request('productdescriptionka');
+        $productstyleEn = request('productstyleen');
+        $productstyleKa = request('productstyleka');
+        $productmaterialEn = request('productmaterialen');
+        $productmaterialKa = request('productmaterialka');
         $price = request('price');
 
 
         $data = [
-            'sub_categories_id' => $id,
+            'sub_category_id' => $id,
             'price' => $price,
-            'en' => ['name' => $productNameEn, 'description' => $productDescriptionEn],
-            'ka' => ['name' => $productNameKa, 'description' => $productDescriptionKa],
+            'en' => [
+                'name' => $productNameEn,
+                'description' => $productDescriptionEn,
+                'style' => $productstyleEn,
+                'material' => $productmaterialEn,
+            ],
+            'ka' => [
+                'name' => $productNameKa,
+                'description' => $productDescriptionKa,
+                'style' => $productstyleKa,
+                'material' => $productmaterialKa,
+            ],
         ];
 
         $product = Product::create($data);
@@ -145,17 +172,26 @@ class ProductController extends Controller
     public function update(Request $request, $locale, $id)
     {
 
+
         $this->validate($request, [
             'productnameen' => 'max:255',
             'productnameka' => 'max:255',
             'productdescriptionen' => 'max:255',
             'productdescriptionka' => 'max:255',
+            'productstyleen' => 'max:255',
+            'productstyleka' => 'max:255',
+            'productmaterialen' => 'max:255',
+            'productmaterialka' => 'max:255',
             'images.*' => 'required|image|mimes:jpeg,png,jpg,svg|max:2048'
 
         ]);
 
         $product = Product::find($id);
 
+        $productstyleEn = request('productstyleen');
+        $productstyleKa = request('productstyleka');
+        $productmaterialEn = request('productmaterialen');
+        $productmaterialKa = request('productmaterialka');
 
         if (request('productnameen')) {
             $product->translate('en')->name = request('productnameen');
@@ -177,8 +213,39 @@ class ProductController extends Controller
             $product->save();
         }
 
+        if (request('productstyleen')) {
+            $product->translate('en')->style = request('productstyleen');
+            $product->save();
+        }
+
+        if (request('productstyleka')) {
+            $product->translate('ka')->style = request('productstyleka');
+            $product->save();
+        }
+
+        if (request('productmaterialen')) {
+            $product->translate('en')->material = request('productmaterialen');
+            $product->save();
+        }
+
+        if (request('productmaterialka')) {
+            $product->translate('ka')->material = request('productmaterialka');
+            $product->save();
+        }
+
         if (request('productprice')) {
             $product->price = request('productprice');
+            $product->save();
+        }
+
+        if (request('favorite')) {
+
+            ($product->favorite) ? $product->favorite = false : $product->favorite = true;
+//            if ($product->favorite == false){
+//                $product->favorite = true;
+//            } else {
+//                $product->favorite = false;
+//            }
             $product->save();
         }
 
@@ -206,7 +273,7 @@ class ProductController extends Controller
 
 
         $product->save();
-        return redirect('admin/' . $locale . '/product');
+        return back();
     }
 
     /**

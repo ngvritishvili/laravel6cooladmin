@@ -63,6 +63,9 @@ class CreateAttributeTranslatesTable extends Migration
             $table->string('edit_product_images')->nullable();
             $table->string('save_changes')->nullable();
             $table->string('products')->nullable();
+            $table->string('category')->nullable();
+            $table->string('style')->nullable();
+            $table->string('material')->nullable();
 
 
             $table->timestamps();

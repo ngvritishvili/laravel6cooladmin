@@ -26,6 +26,9 @@ class UserSeeder extends Seeder
             'name' => 'attributes',
 
             'en' => [
+                'style' => 'Style',
+                'material' => 'Material',
+
                 'products' => 'Products',
                 'product_name' => 'Product Name',
                 'product_description' => 'Product Description',
@@ -33,6 +36,7 @@ class UserSeeder extends Seeder
                 'product_image' => 'Product Images',
                 'browse' => 'Browse',
                 'categories' => 'Categories',
+                'category' => 'Category',
                 'for_sub_category' => 'Enter Sub Category For -> ',
                 'sub_categories' => 'Sub Categories',
                 'edit_sub_category' => 'Edit Name For Sub Category',
@@ -74,12 +78,16 @@ class UserSeeder extends Seeder
 
             'ka' => [
 
+                'style' => 'სტილი',
+                'material' => 'მატერიალი',
+
                 'products' => 'პროდუქტები',
                 'product_name' => 'პროდუქტის დასახელება',
                 'product_description' => 'პროდუქტის აღწერა',
                 'product_price' => 'პროდუქტის ფასი',
                 'product_image' => 'პროდუქტის სურათები',
                 'browse' => 'აირჩიე',
+                'category' => 'კატეგორია',
                 'categories' => 'კატეგორიები',
                 'for_sub_category' => 'შეიყვანე სახელი სუბ კატეგორიისთვის: -> ',
                 'sub_categories' => 'სუბ კატეგორიები',

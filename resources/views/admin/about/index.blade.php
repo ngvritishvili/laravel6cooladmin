@@ -31,12 +31,14 @@
 
                     <div class="">
                         <label
-                            class="form-control-label mt-4">{{ ($attributes != null) ? $attributes->translate($locale)->description : 'Article' }}</label>
+                            class="form-control-label mt-4">{{ ($attributes != null) ? $attributes->translate($locale)->description : 'Article' }} En</label>
                         <textarea class="md-textarea form-control" rows="4" cols="7"
                                   name="articleen"
                                   placeholder="English" required
                         >{{ ($about != null) ? $about->translate('en')->article : '' }}</textarea>
 
+                        <label
+                            class="form-control-label mt-4">{{ ($attributes != null) ? $attributes->translate($locale)->description : 'Article' }} Ge</label>
                         <textarea class="md-textarea form-control mt-3" rows="4" cols="7"
                                   name="articleka"
                                   placeholder="ქართული" required

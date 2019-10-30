@@ -53,9 +53,11 @@ class SlideController extends Controller
             'description' => 'required'
         ]);
 
+
         $pluss = random_int(1,255);
         $date = Carbon::now()->format('Y-m-d-h-m-s');
         $imageName = $date . '.' . $pluss . $request->image->getClientOriginalExtension();
+
         $request->image->move(public_path('/images/slides'), $imageName);
 
         $data = [

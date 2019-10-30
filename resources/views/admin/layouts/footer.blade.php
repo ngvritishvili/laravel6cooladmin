@@ -22,5 +22,18 @@
 <script src="/assets/js/charts-home.js"></script>
 <!-- Main File-->
 <script src="/assets/js/front.js"></script>
-
-
+<script>
+    CKEDITOR.replace( 'articleen' );
+    CKEDITOR.replace( 'articleka' );
+</script>
+<script>
+    CKEDITOR.replace( 'productdescriptionen' );
+    CKEDITOR.replace( 'productdescriptionka' );
+</script>
+<script>
+    CKEDITOR.replace( 'site_description' );
+</script>
+<script>
+    CKEDITOR.replace( 'descriptionka' );
+    CKEDITOR.replace( 'descriptionen' );
+</script>

@@ -7,6 +7,7 @@ use App\Attribute;
 use App\Category;
 use App\Info;
 use App\Product;
+use App\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -38,17 +39,29 @@ class HomeController extends Controller
 
     }
 
+
+
+
     public function catalog($locale)
     {
         $info = Info::with('slides','partners')->get()->first();
         $categories = Category::with('sub')->get();
-        $products = Product::with('images')->get();
+        $products = Product::all();
+        $subCategory = SubCategory::with('products')->get();
+        $productsTime = Product::with('images')->orderByDesc('created_at')->get();
+        $productsPrice = Product::with('images')->orderByDesc('price')->get();
+        $productsIO = Product::with('images')->where('favorite', 1)->orderByDesc('created_at')->get();
+        $productsRandom = Product::with('images')->inRandomOrder()->get();
+
+//        dd($productsRandom);
+
+
 
         App::setLocale($locale);
 
         $attribute = Attribute::first();
 
-        return view('catalog', compact('attribute', 'locale','products','categories','info'));
+        return view('catalog', compact('attribute', 'locale','productsTime', 'productsPrice','categories','info','products','subCategory','productsIO','productsRandom'));
     }
 
     public function contact($locale)
@@ -98,5 +111,56 @@ class HomeController extends Controller
         Attribute::create($data);
 
         return redirect('home');
+    }
+
+    public function content($locale)
+    {
+        $info = Info::with('slides','partners')->get()->first();
+        $categories = Category::with('sub')->get();
+        $products = Product::all();
+        $subCategory = SubCategory::with('products')->get();
+        $productsTime = Product::with('images')->orderByDesc('created_at')->get();
+        $productsPrice = Product::with('images')->orderByDesc('price')->get();
+        $productsIO = Product::with('images')->where('favorite', 1)->orderByDesc('created_at')->get();
+        $productsRandom = Product::with('images')->inRandomOrder()->get();
+
+//        dd($productsRandom);
+
+
+
+        App::setLocale($locale);
+        $attribute = Attribute::first();
+
+
+        return view('content',compact('locale','attribute','info','categories', 'products','subCategory','productsTime', 'productsPrice','productsIO','productsRandom'));
+    }
+
+    public function search($locale)
+    {
+
+dd(request()->all());
+
+
+
+
+
+        $info = Info::with('slides','partners')->get()->first();
+        $categories = Category::with('sub')->get();
+        $products = Product::all();
+        $subCategory = SubCategory::with('products')->get();
+        $productsTime = Product::with('images')->orderByDesc('created_at')->get();
+        $productsPrice = Product::with('images')->orderByDesc('price')->get();
+        $productsIO = Product::with('images')->where('favorite', 1)->orderByDesc('created_at')->get();
+        $productsRandom = Product::with('images')->inRandomOrder()->get();
+
+//        dd($productsRandom);
+
+
+
+        App::setLocale($locale);
+        $attribute = Attribute::first();
+
+
+        return view('search',compact('locale','attribute','info','categories', 'products','subCategory','productsTime', 'productsPrice','productsIO','productsRandom'));
     }
 }

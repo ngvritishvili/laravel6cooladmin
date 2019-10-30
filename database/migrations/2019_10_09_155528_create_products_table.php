@@ -15,9 +15,10 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('sub_categories_id');
-            $table->foreign('sub_categories_id')->references('id')->on('sub_categories')->onDelete('cascade');
+            $table->unsignedBigInteger('sub_category_id');
+            $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade');
             $table->string('price')->nullable();
+            $table->boolean('favorite')->default(false);
             $table->timestamps();
         });
     }

@@ -7,10 +7,10 @@
     <div class="header">
         <ul class="contact_info">
             <li>
-                <a href="#"><i class="fa fa-envelope-o"></i>{{ $info->email }}</a>
+                <a href="#"><i class="fa fa-envelope-o"></i>{{ $info->email ?? ''}}</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-mobile"></i>{{ $info->phone }}</a>
+                <a href="#"><i class="fa fa-mobile"></i>{{ $info->phone ?? ''}}</a>
             </li>
         </ul>
         <div class="right_side">

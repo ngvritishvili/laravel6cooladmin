@@ -66,3 +66,7 @@ Route::middleware('auth')->prefix('admin/{locale}')->group(function () {
     Route::resource('partner', 'adminControllers\PartnerController');
 
 });
+
+
+Route::get('/content/{locale}', 'HomeController@content')->name('content');
+Route::post('/search/{locale}', 'HomeController@search')->name('search');
